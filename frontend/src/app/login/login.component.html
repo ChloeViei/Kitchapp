@@ -1,10 +1,57 @@
-<div class="col-md-12">
+<div class="body">
+    <div class="veen">
+        <div class="login-btn splits">
+            <p>Already an user?</p>
+            <button class="active">Login</button>
+        </div>
+        <div class="rgstr-btn splits">
+            <p>Don't have an account?</p>
+            <button>Register</button>
+        </div>
+        <div class="wrapper">
+            <form id="login" tabindex="500">
+                <h3>Login</h3>
+                <div class="mail">
+                    <input type="mail" name="">
+                    <label>Mail or Username</label>
+                </div>
+                <div class="passwd">
+                    <input type="password" name="">
+                    <label>Password</label>
+                </div>
+                <div class="submit">
+                    <button class="dark">Login</button>
+                </div>
+            </form>
+            <form id="register" tabindex="502">
+                <h3>Register</h3>
+                <div class="name">
+                    <input type="text" name="">
+                    <label>Full Name</label>
+                </div>
+                <div class="mail">
+                    <input type="mail" name="">
+                    <label>Mail</label>
+                </div>
+                <div class="uid">
+                    <input type="text" name="">
+                    <label>User Name</label>
+                </div>
+                <div class="passwd">
+                    <input type="password" name="">
+                    <label>Password</label>
+                </div>
+                <div class="submit">
+                    <button class="dark">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>	
+</div>
+
+<div class="col-md-8">
     <div class="card card-container">
-        <img
-            id="profile-img"
-            src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-            class="profile-img-card"
-        />
+        <i class="bi bi-person-circle"></i>
         <form
             *ngIf="!isLoggedIn"
             name="form"

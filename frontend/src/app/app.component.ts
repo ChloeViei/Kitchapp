@@ -7,6 +7,7 @@ import { AuthService } from './_services/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   private roles: string[] = [];
   isLoggedIn = false;
