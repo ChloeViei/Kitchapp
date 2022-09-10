@@ -1,4 +1,4 @@
-package com.chloeviei.spring.login.security.services;
+package com.chloeviei.spring.auth.security.services;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
@@ -6,7 +6,8 @@ import java.util.stream.Collectors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import com.chloeviei.spring.login.models.User;
+
+import com.chloeviei.spring.auth.models.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class UserDetailsImpl implements UserDetails {

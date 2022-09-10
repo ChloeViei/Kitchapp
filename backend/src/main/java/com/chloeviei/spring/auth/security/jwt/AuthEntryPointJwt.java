@@ -1,4 +1,4 @@
-package com.chloeviei.spring.login.security.jwt;
+package com.chloeviei.spring.auth.security.jwt;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;

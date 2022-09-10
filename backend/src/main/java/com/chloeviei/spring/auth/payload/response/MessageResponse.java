@@ -1,4 +1,4 @@
-package com.chloeviei.spring.login.payload.response;
+package com.chloeviei.spring.auth.payload.response;
 
 public class MessageResponse {
 	private String message;

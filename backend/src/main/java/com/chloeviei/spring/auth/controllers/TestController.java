@@ -1,4 +1,4 @@
-package com.chloeviei.spring.login.controllers;
+package com.chloeviei.spring.auth.controllers;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

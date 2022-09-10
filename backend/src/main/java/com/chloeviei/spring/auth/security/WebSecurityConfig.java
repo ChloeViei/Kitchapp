@@ -1,4 +1,4 @@
-package com.chloeviei.spring.login.security;
+package com.chloeviei.spring.auth.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,9 +12,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import com.chloeviei.spring.login.security.jwt.AuthEntryPointJwt;
-import com.chloeviei.spring.login.security.jwt.AuthTokenFilter;
-import com.chloeviei.spring.login.security.services.UserDetailsServiceImpl;
+
+import com.chloeviei.spring.auth.security.jwt.AuthEntryPointJwt;
+import com.chloeviei.spring.auth.security.jwt.AuthTokenFilter;
+import com.chloeviei.spring.auth.security.services.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity

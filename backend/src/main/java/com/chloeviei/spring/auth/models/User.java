@@ -1,4 +1,4 @@
-package com.chloeviei.spring.login.models;
+package com.chloeviei.spring.auth.models;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;

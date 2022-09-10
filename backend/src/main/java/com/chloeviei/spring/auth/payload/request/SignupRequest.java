@@ -1,4 +1,4 @@
-package com.chloeviei.spring.login.payload.request;
+package com.chloeviei.spring.auth.payload.request;
 import java.util.Set;
 import javax.validation.constraints.*;
  

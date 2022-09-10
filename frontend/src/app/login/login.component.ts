@@ -8,10 +8,12 @@ import { StorageService } from '../_services/storage.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
   form: any = {
     username: null,
     password: null
   };
+  
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';

@@ -1,4 +1,4 @@
-package com.chloeviei.spring.login.controllers;
+package com.chloeviei.spring.auth.controllers;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,17 +18,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.chloeviei.spring.login.models.ERole;
-import com.chloeviei.spring.login.models.Role;
-import com.chloeviei.spring.login.models.User;
-import com.chloeviei.spring.login.payload.request.LoginRequest;
-import com.chloeviei.spring.login.payload.request.SignupRequest;
-import com.chloeviei.spring.login.payload.response.UserInfoResponse;
-import com.chloeviei.spring.login.payload.response.MessageResponse;
-import com.chloeviei.spring.login.repository.RoleRepository;
-import com.chloeviei.spring.login.repository.UserRepository;
-import com.chloeviei.spring.login.security.jwt.JwtUtils;
-import com.chloeviei.spring.login.security.services.UserDetailsImpl;
+
+import com.chloeviei.spring.auth.models.ERole;
+import com.chloeviei.spring.auth.models.Role;
+import com.chloeviei.spring.auth.models.User;
+import com.chloeviei.spring.auth.payload.request.LoginRequest;
+import com.chloeviei.spring.auth.payload.request.SignupRequest;
+import com.chloeviei.spring.auth.payload.response.MessageResponse;
+import com.chloeviei.spring.auth.payload.response.UserInfoResponse;
+import com.chloeviei.spring.auth.repository.RoleRepository;
+import com.chloeviei.spring.auth.repository.UserRepository;
+import com.chloeviei.spring.auth.security.jwt.JwtUtils;
+import com.chloeviei.spring.auth.security.services.UserDetailsImpl;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController

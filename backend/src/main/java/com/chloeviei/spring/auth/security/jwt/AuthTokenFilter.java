@@ -1,4 +1,4 @@
-package com.chloeviei.spring.login.security.jwt;
+package com.chloeviei.spring.auth.security.jwt;
 import java.io.IOException;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -12,7 +12,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
-import com.chloeviei.spring.login.security.services.UserDetailsServiceImpl;
+
+import com.chloeviei.spring.auth.security.services.UserDetailsServiceImpl;
 
 public class AuthTokenFilter extends OncePerRequestFilter {
 

@@ -1,9 +1,10 @@
-package com.chloeviei.spring.login.repository;
+package com.chloeviei.spring.auth.repository;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.chloeviei.spring.login.models.ERole;
-import com.chloeviei.spring.login.models.Role;
+
+import com.chloeviei.spring.auth.models.ERole;
+import com.chloeviei.spring.auth.models.Role;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Long> {
