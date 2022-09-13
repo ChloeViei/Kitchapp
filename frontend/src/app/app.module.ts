@@ -12,6 +12,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 
 import { HttpRequestInterceptor } from './_helpers/http.interceptor';
+import { RecipeListComponent } from './recipe-list/recipe-list.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HttpRequestInterceptor } from './_helpers/http.interceptor';
     RegisterComponent,
     HomeComponent,
     ProfileComponent,
-    BoardAdminComponent
+    BoardAdminComponent,
+    RecipeListComponent
   ],
   imports: [
     BrowserModule,
