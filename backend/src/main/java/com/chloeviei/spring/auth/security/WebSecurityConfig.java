@@ -22,9 +22,9 @@ import com.chloeviei.spring.auth.security.jwt.JwtTokenFilter;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
-    securedEnabled = true,
+    securedEnabled = false,
     jsr250Enabled = true,
-    prePostEnabled = true)
+    prePostEnabled = false)
 public class WebSecurityConfig {
      
   @Autowired 

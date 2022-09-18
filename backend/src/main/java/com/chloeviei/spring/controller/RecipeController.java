@@ -1,8 +1,11 @@
 package com.chloeviei.spring.controller;
 
+import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.annotation.security.RolesAllowed;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,29 +31,33 @@ public class RecipeController {
 
     // get all recipes
     @GetMapping
+	@RolesAllowed({"ROLE_USER", "ROLE_MODERATOR"})
     public List<Recipe> getAllRecipes() {
         return recipeRepository.findAll();
     }
 
     // create recipe
 	@PostMapping
-	public Recipe createEmployee(@RequestBody Recipe recipe) {
-		return recipeRepository.save(recipe);
+	@RolesAllowed("ROLE_MODERATOR")
+	public ResponseEntity<Recipe> createRecipe(@RequestBody Recipe recipe) {
+		Recipe savedRecipe = recipeRepository.save(recipe);
+        URI recipeURI = URI.create("/recipes/" + savedRecipe.getId());
+        return ResponseEntity.created(recipeURI).body(savedRecipe);
 	}
 
     // get recipe by id
 	@GetMapping("/{id}")
-	public ResponseEntity<Recipe> getEmployeeById(@PathVariable Long id) {
+	public ResponseEntity<Recipe> getRecipeById(@PathVariable Long id) {
 		Recipe recipe = recipeRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id :" + id));
+				.orElseThrow(() -> new ResourceNotFoundException("Recipe not exist with id :" + id));
 		return ResponseEntity.ok(recipe);
 	}
 
     // update recipe 
 	@PutMapping("/{id}")
-	public ResponseEntity<Recipe> updateEmployee(@PathVariable Long id, @RequestBody Recipe recipeDetails){
+	public ResponseEntity<Recipe> updateRecipe(@PathVariable Long id, @RequestBody Recipe recipeDetails){
 		Recipe recipe = recipeRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id :" + id));
+				.orElseThrow(() -> new ResourceNotFoundException("Recipe not exist with id :" + id));
 		
 		recipe.setTitle(recipeDetails.getTitle());
 		recipe.setDescription(recipeDetails.getDescription());
@@ -64,7 +71,7 @@ public class RecipeController {
 
     // delete recipe
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable Long id){
+	public ResponseEntity<Map<String, Boolean>> deleteRecipe(@PathVariable Long id){
 		Recipe recipe = recipeRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Recipe not exist with id :" + id));
 		
