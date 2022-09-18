@@ -21,12 +21,12 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     @Email
-    @Column(nullable = false, unique = true, length = 50)
     private String email;
 
     @NotBlank
-    @Column(nullable = false, length = 20)
+    @Size(min = 5, max = 20)
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)

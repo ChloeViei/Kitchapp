@@ -1,11 +1,14 @@
 package com.chloeviei.spring.auth.payload.request;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 
 public class AuthRequest {
 
     @Email
     private String email;
+
+    @Size(min = 5, max = 20)
     private String password;
 
 
