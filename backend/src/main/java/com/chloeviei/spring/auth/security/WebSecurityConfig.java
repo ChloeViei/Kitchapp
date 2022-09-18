@@ -1,5 +1,5 @@
 package com.chloeviei.spring.auth.security;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -11,11 +11,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.chloeviei.spring.auth.security.jwt.AuthEntryPointJwt;
 import com.chloeviei.spring.auth.security.jwt.AuthTokenFilter;
-import com.chloeviei.spring.auth.security.services.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
@@ -25,11 +22,14 @@ import com.chloeviei.spring.auth.security.services.UserDetailsServiceImpl;
     prePostEnabled = true)
 public class WebSecurityConfig {
 
-  @Autowired
-  UserDetailsServiceImpl userDetailsService;
+  // @Autowired
+  // private UserDetailsServiceImpl userDetailsService;
 
-  @Autowired
-  private AuthEntryPointJwt unauthorizedHandler;
+  // @Autowired
+	// private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+
+  // @Autowired
+	// private JwtRequestFilter jwtRequestFilter;
   
   @Bean
   public PasswordEncoder passwordEncoder() {
@@ -40,22 +40,53 @@ public class WebSecurityConfig {
   public AuthTokenFilter authenticationJwtTokenFilter() {
     return new AuthTokenFilter();
   }
-  
+
   @Bean
   public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
       return authenticationConfiguration.getAuthenticationManager();
   }
   
   @Bean
-  public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    http.cors().and().csrf().disable()
-      .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-      .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-      .authorizeRequests().antMatchers("/api/auth/**").permitAll()
-      .antMatchers("/api/test/**").permitAll()
-      .anyRequest().authenticated();
-    http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+  public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+    // httpSecurity.csrf().disable()
+    //   // dont authenticate this particular request
+    //   .authorizeRequests().antMatchers("/authenticate").permitAll().
+    //   // all other requests need to be authenticated
+    //   anyRequest().authenticated().and().
+    //   // make sure we use stateless session; session won't be used to
+    //   // store user's state.
+    //   exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
+    //   .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-    return http.build();
+    // // Add a filter to validate the tokens with every request
+    // httpSecurity.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+
+    // Configure AuthenticationManagerBuilder
+    // AuthenticationManagerBuilder authenticationManagerBuilder = httpSecurity.getSharedObject(AuthenticationManagerBuilder.class);
+    // authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+
+    // // Get AuthenticationManager
+    // AuthenticationManager authenticationManager = authenticationManagerBuilder.build();
+
+    httpSecurity.csrf().disable();
+    httpSecurity.authorizeRequests().anyRequest().permitAll();
+    httpSecurity.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+    // httpSecurity
+    //     .cors().and()
+    //     .csrf().disable()
+    //     .authorizeRequests().antMatchers("/auth/login").permitAll()
+    //     // .antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL)
+    //     // .anyRequest().permitAll()
+    //     .anyRequest().authenticated().and()
+    //     // .addFilter(getAuthenticationFilter(authenticationManager))
+    //     // .addFilter(new AuthorizationFilter(authenticationManager, userRepository))
+    //     // .authenticationManager(authenticationManager);
+
+    //     .sessionManagement()
+    //     .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+    // httpSecurity.headers().frameOptions().disable();
+
+    return httpSecurity.build();
   }
 }

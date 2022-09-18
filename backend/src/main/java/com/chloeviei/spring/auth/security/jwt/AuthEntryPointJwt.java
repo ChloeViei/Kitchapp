@@ -1,4 +1,5 @@
 package com.chloeviei.spring.auth.security.jwt;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,7 +27,7 @@ public class AuthEntryPointJwt implements AuthenticationEntryPoint {
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         final Map<String, Object> body = new HashMap<>();
         body.put("status", HttpServletResponse.SC_UNAUTHORIZED);
-        body.put("error", "Unauthorized");
+        body.put("error", request);
         body.put("message", authException.getMessage());
         body.put("path", request.getServletPath());
         final ObjectMapper mapper = new ObjectMapper();
