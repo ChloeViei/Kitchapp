@@ -1,6 +1,8 @@
 package com.chloeviei.spring.auth.models;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -8,6 +10,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
@@ -26,7 +29,7 @@ public class User implements UserDetails {
     private String email;
 
     @NotBlank
-    @Size(min = 5, max = 20)
+    @Size(min = 5)
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -75,9 +78,17 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
+    public void addRole(Role role) {
+        this.roles.add(role);
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        for (Role role : roles) {
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
+        }
+        return authorities;
     }
 
     @Override
